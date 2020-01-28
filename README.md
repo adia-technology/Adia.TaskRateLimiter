@@ -1,5 +1,7 @@
 # Adia.TaskRateLimiter
 
+![](https://github.com/adia-technology/Adia.TaskRateLimiter/workflows/Build%20and%20test/badge.svg)
+
 This is a utility to limit the rate of calls to any provided function. When the function is called too frequently, TaskRateLimiter queues it and schedules its execution for a later time
 
 ## Installation
