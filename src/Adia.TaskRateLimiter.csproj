@@ -5,7 +5,6 @@
     <AssemblyName>Adia.TaskRateLimiter</AssemblyName>
     <DefaultNamespace>Adia.TaskRateLimiter</DefaultNamespace>
     <Version>0.0.1</Version>
-    <VersionSuffix>alpha</VersionSuffix>
     <Author>Adia</Author>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>A utility to limit the rate of calls to any provided function.</Description>
