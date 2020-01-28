@@ -1,6 +1,6 @@
 # Adia.TaskRateLimiter
 
-![](https://github.com/adia-technology/Adia.TaskRateLimiter/workflows/Build%20and%20test/badge.svg)
+![](https://github.com/adia-technology/Adia.TaskRateLimiter/workflows/Build%20and%20test/badge.svg) ![Nuget](https://img.shields.io/nuget/v/Adia.TaskRateLimiter?logo=nuget)
 
 This is a utility to limit the rate of calls to any provided function. When the function is called too frequently, TaskRateLimiter queues it and schedules its execution for a later time
 
@@ -27,7 +27,7 @@ Then, provide your function to the `Run` method of the `rateLimiter`:
 Func<Task> myCode = () =>
 {
     //...
-}
+};
 
 await rateLimiter.Run(myCode);
 ```
@@ -41,4 +41,4 @@ await rateLimiter.Run(myCode); // these 3 will complete without delays
 await rateLimiter.Run(myCode); // this one will wait
 ```
 
-> The time to wait is counted from the end of the first call.
+> The time to wait is measured from the end of the first call.

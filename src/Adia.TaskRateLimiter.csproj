@@ -10,6 +10,7 @@
     <Description>A utility to limit the rate of calls to any provided function.</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>rate limiting;backpressure</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
