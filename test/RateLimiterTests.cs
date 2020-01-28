@@ -26,7 +26,7 @@ namespace Adia.TaskRateLimiter.Tests
             var tasks = new List<Task>();
 
             var throttler = new RateLimiter(2, TimeSpan.FromSeconds(0.5));
-            
+
             tasks.Add(throttler.Run(action));
             tasks.Add(throttler.Run(action));
             tasks.Add(throttler.Run(action));
@@ -49,7 +49,7 @@ namespace Adia.TaskRateLimiter.Tests
         public async Task RunActions_ShouldExecuteAtMostNRequestsInGivenPeriod()
         {
             var stopwatch = new Stopwatch();
-            
+
             Func<Task<int>> action = () => Task.FromResult((int)stopwatch.ElapsedMilliseconds);
 
             var throttler = new RateLimiter(2, TimeSpan.FromMilliseconds(250));
@@ -68,9 +68,9 @@ namespace Adia.TaskRateLimiter.Tests
 
             results[0].ShouldBeLessThan(250);
             results[1].ShouldBeLessThan(250);
-            results[2].ShouldBeGreaterThan(250);
-            results[3].ShouldBeGreaterThan(250);
-            results[4].ShouldBeGreaterThan(500);
+            results[2].ShouldBeGreaterThan(240); // less than 250 as delays in .NET are not exact
+            results[3].ShouldBeGreaterThan(240);
+            results[4].ShouldBeGreaterThan(480);
         }
 
         [Test]
