@@ -42,19 +42,20 @@ namespace Adia.TaskRateLimiter
         /// <returns>Whatever the function to run returns.</returns>
         public async Task Run(Func<Task> action)
         {
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
+
             try
             {
-                await _semaphore.WaitAsync();
-                Console.WriteLine("Lock aquired. Resource count: " + _semaphore.CurrentCount);
-                await action();
+                await _semaphore.WaitAsync().ConfigureAwait(false);
+                await action().ConfigureAwait(false);
             }
             finally
             {
-                Console.WriteLine("Scheduling release of a semaphore");
-                _ = Task.Delay(_timePeriod).ContinueWith(_ => {
-                    _semaphore.Release();
-                    Console.WriteLine("Semaphore released. Resource count: " + _semaphore.CurrentCount);
-                });
+                _ = Task.Delay(_timePeriod)
+                    .ContinueWith(_ => _semaphore.Release(), TaskScheduler.Default);
             }
         }
 
@@ -66,14 +67,20 @@ namespace Adia.TaskRateLimiter
         /// <returns>Whatever the function to run returns.</returns>
         public async Task<T> Run<T>(Func<Task<T>> action)
         {
+            if (action == null)
+            {
+                throw new ArgumentNullException(nameof(action));
+            }
+
             try
             {
-                await _semaphore.WaitAsync();
-                return await action();
+                await _semaphore.WaitAsync().ConfigureAwait(false);
+                return await action().ConfigureAwait(false);
             }
             finally
             {
-                _ = Task.Delay(_timePeriod).ContinueWith(delayTask => { _semaphore.Release(); });
+                _ = Task.Delay(_timePeriod)
+                    .ContinueWith(delayTask => _semaphore.Release(), TaskScheduler.Default);
             }
         }
     }
