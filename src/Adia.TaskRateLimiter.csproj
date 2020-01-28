@@ -4,11 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Adia.TaskRateLimiter</AssemblyName>
     <DefaultNamespace>Adia.TaskRateLimiter</DefaultNamespace>
-    <Version>0.0.1</Version>
-    <Author>Adia</Author>
+    <Version>0.0.2</Version>
+    <Authors>AdiaTechnology;doodack</Authors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>A utility to limit the rate of calls to any provided function.</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>rate limiting;backpressure</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
